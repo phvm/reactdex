@@ -2,6 +2,7 @@
 import {useState, useEffect} from "react";
 import { PokemonService } from '../services/pokemonService.ts'
 import {Pokemon} from "../interfaces/interfaces.ts";
+import { Card } from '../Components/Card.tsx';
 export const Home = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([{
         name: '', icon: '', number: 0
@@ -27,6 +28,8 @@ export const Home = () => {
         getPokemons();
     }, []);
     return (
-        <div> </div>
+        <main className='p-10 bg-cyan-100 h-full'>
+            <Card name={'Pikachu'} number={1} url={''}/>
+        </main>
     )
 }
