@@ -1,8 +1,6 @@
 interface PokeNumberProps {
-    number: number
+  number: number;
 }
-export const PokeNumber = ({number}: PokeNumberProps) => {
-    return (
-        <p>{number}</p>
-    )
-}
+export const PokeNumber = ({ number }: PokeNumberProps) => {
+  return <p>{number}</p>;
+};

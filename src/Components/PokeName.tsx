@@ -1,11 +1,7 @@
-
-
 interface PokeNameProps {
-    name: string
+  name: string;
 }
 
-export const PokeName = ({name}: PokeNameProps) => {
-    return (
-        <p>{name}</p>
-    )
-}
+export const PokeName = ({ name }: PokeNameProps) => {
+  return <p>{name}</p>;
+};

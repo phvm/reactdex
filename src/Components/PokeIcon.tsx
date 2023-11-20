@@ -1,10 +1,8 @@
-
 interface PokeIconProps {
-    url: string
+  url: string;
+  name: string;
 }
 
-export const PokeIcon = ({url}: PokeIconProps) => {
-    return (
-        <img src={url} alt="" />
-    )
-}
+export const PokeIcon = ({ url, name }: PokeIconProps) => {
+  return <img src={url} alt={`${name} standard icon`} />;
+};
