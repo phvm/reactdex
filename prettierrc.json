@@ -5,7 +5,7 @@
   "printWidth": 120,
   "bracketSpacing": true,
   "bracketLine": true,
-  "arrowFunctionParentheses": "always",
+  "arrowFunctionParentheses": "avoid",
   "singleAttributePerLine": true,
   "trailingComma": "all"
 }
