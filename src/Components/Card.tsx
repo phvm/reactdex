@@ -6,6 +6,7 @@ interface CardProps {
   name: string;
   url: string;
   number: number;
+  types: string[];
 }
 
 type pokeType = {
@@ -69,12 +70,15 @@ const cardColors: pokeType[] = [
   { name: "dragon", color: "#7F557D" },
   { name: "dark", color: "#323031" },
 ];
-export const Card = ({ name, url, number }: CardProps) => {
+export const Card = ({ name, url, number, types }: CardProps) => {
   return (
     <div className="box-border bg-blue-300 flex flex-col items-center w-2/12 h-40 rounded shadow-md">
       <PokeName name={name}></PokeName>
       <PokeIcon url={url} name={name}></PokeIcon>
       <PokeNumber number={number}></PokeNumber>
+      {types.map((type: string) => (
+        <p>{type}</p>
+      ))}
     </div>
   );
 };
