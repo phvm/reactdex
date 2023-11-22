@@ -28,7 +28,7 @@ export const Home = () => {
     <main className="py-10 px-32 bg-white grid grid-cols-3 gap-3 justify-items-center w-[70%]">
       {pokemons.map((pokemon) => (
         <Card
-          key={pokemon.name}
+          key={pokemon.number}
           name={pokemon.name}
           number={pokemon.number}
           url={pokemon.icon}
