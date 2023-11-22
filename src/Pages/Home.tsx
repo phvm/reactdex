@@ -10,7 +10,7 @@ export const Home = () => {
   useEffect(() => {
     async function getPokemons() {
       for (let i = 1; i <= count; i++) {
-        await PokemonService.get(i).then((data) => {
+        PokemonService.get(i).then((data) => {
           const pokemon: Pokemon = {
             name: data.name,
             icon: data.sprites.front_default,
