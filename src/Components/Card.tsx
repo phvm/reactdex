@@ -72,12 +72,12 @@ const cardColors: pokeType[] = [
 ];
 export const Card = ({ name, url, number, types }: CardProps) => {
   return (
-    <div className="box-border bg-blue-300 flex flex-col items-center w-2/12 h-40 rounded shadow-md">
+    <div className="box-border border-[1px] border-red-600 w-36 flex flex-col items-center h-64 rounded shadow-md m-2">
       <PokeName name={name}></PokeName>
       <PokeIcon url={url} name={name}></PokeIcon>
       <PokeNumber number={number}></PokeNumber>
       {types.map((type: string) => (
-        <p>{type}</p>
+        <span>{type}</span>
       ))}
     </div>
   );
