@@ -25,7 +25,7 @@ export const Home = () => {
     getPokemons();
   }, []);
   return (
-    <main className="py-10 px-32 bg-cyan-100 flex flex-wrap">
+    <main className="py-10 px-32 bg-white grid grid-cols-3 gap-3 justify-items-center w-[70%]">
       {pokemons.map((pokemon) => (
         <Card
           key={pokemon.name}
