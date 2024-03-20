@@ -3,5 +3,5 @@ interface PokeNameProps {
 }
 
 export const PokeName = ({ name }: PokeNameProps) => {
-  return <p className="first-letter:uppercase">{name}</p>;
+  return <p className="first-letter:uppercase font-bold white">{name}</p>;
 };
