@@ -1,11 +1,42 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { PokemonService } from '../services/pokemonService.ts';
 import { Pokemon } from '../interfaces/interfaces.ts';
 import { Card } from '../Components/Card.tsx';
+import SearchBar from '../Components/SearchBar';
 
 export const Home = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([]);
+  const [searchName, setSearchName] = useState<string>('');
   const count: number = 151;
+
+  function handleSearchNameChange(event: ChangeEvent<HTMLInputElement>) {
+    setSearchName(event.target.value);
+  }
+
+  function pokemonCardsMap() {
+    const pokemonList: Pokemon[] = filteredPokemons.length === 0 ? pokemons : filteredPokemons;
+    return pokemonList.map((pokemon, index) => (
+      <Card
+        key={pokemon.number + pokemon.name + index}
+        name={pokemon.name}
+        number={pokemon.number}
+        url={pokemon.icon}
+        types={pokemon.types}
+      />
+    ));
+  }
+
+  useEffect(() => {
+    function filterPokemons() {
+      const filtered: Pokemon[] = pokemons.filter((pokemon: Pokemon) =>
+        pokemon.name.includes(searchName.toLocaleLowerCase()),
+      );
+      setFilteredPokemons(filtered);
+    }
+
+    filterPokemons();
+  }, [searchName]);
 
   useEffect(() => {
     async function getPokemons() {
@@ -24,17 +55,16 @@ export const Home = () => {
 
     getPokemons();
   }, []);
+
   return (
-    <main className="py-10 px-32 bg-cyan-100 flex flex-wrap justify-center">
-      {pokemons.map((pokemon) => (
-        <Card
-          key={pokemon.number}
-          name={pokemon.name}
-          number={pokemon.number}
-          url={pokemon.icon}
-          types={pokemon.types}
+    <div className="bg-cyan-100 h-full w-full flex flex-col">
+      <header className="mx-auto">
+        <SearchBar
+          handleInputChange={handleSearchNameChange}
+          pokemonName={searchName}
         />
-      ))}
-    </main>
+      </header>
+      <main className="py-10 px-32 flex flex-wrap justify-center">{pokemonCardsMap()}</main>
+    </div>
   );
 };
