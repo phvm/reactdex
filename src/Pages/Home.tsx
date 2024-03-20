@@ -10,7 +10,7 @@ export const Home = () => {
   useEffect(() => {
     async function getPokemons() {
       for (let i = 1; i <= count; i++) {
-        PokemonService.get(i).then((data) => {
+        await PokemonService.get(i).then((data) => {
           const pokemon: Pokemon = {
             name: data.name,
             icon: data.sprites.front_default,
@@ -25,7 +25,7 @@ export const Home = () => {
     getPokemons();
   }, []);
   return (
-    <main className="py-10 px-32 bg-cyan-100 flex flex-wrap">
+    <main className="py-10 px-32 bg-cyan-100 flex flex-wrap justify-center">
       {pokemons.map((pokemon) => (
         <Card
           key={pokemon.number}
