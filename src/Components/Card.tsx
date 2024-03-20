@@ -1,6 +1,6 @@
-import { PokeName } from "./PokeName";
-import { PokeIcon } from "./PokeIcon.tsx";
-import { PokeNumber } from "./PokeNumber.tsx";
+import { PokeName } from './PokeName';
+import { PokeIcon } from './PokeIcon.tsx';
+import { PokeNumber } from './PokeNumber.tsx';
 
 interface CardProps {
   name: string;
@@ -10,75 +10,55 @@ interface CardProps {
 }
 
 type pokeType = {
-  name:
-    | "fire"
-    | "water"
-    | "grass"
-    | "normal"
-    | "bug"
-    | "flying"
-    | "poison"
-    | "electric"
-    | "ground"
-    | "fairy"
-    | "fighting"
-    | "psychic"
-    | "rock"
-    | "steel"
-    | "ice"
-    | "ghost"
-    | "dragon"
-    | "dark";
-  color:
-    | "#CA3C25"
-    | "#3F88C5"
-    | "#329F5B"
-    | "#F4F1BB"
-    | "#B5E150"
-    | "#DFDFDF"
-    | "#5941A9"
-    | "#FEC601"
-    | "#BB9457"
-    | "#FF487C"
-    | "#980B01"
-    | "#FF53C6"
-    | "#A38560"
-    | "#889696"
-    | "#89FFFF"
-    | "#603F6C"
-    | "#7F557D"
-    | "#323031";
+  [key: string]: string;
 };
 
-const cardColors: pokeType[] = [
-  { name: "fire", color: "#CA3C25" },
-  { name: "water", color: "#3F88C5" },
-  { name: "grass", color: "#329F5B" },
-  { name: "normal", color: "#F4F1BB" },
-  { name: "bug", color: "#B5E150" },
-  { name: "flying", color: "#DFDFDF" },
-  { name: "poison", color: "#5941A9" },
-  { name: "electric", color: "#FEC601" },
-  { name: "ground", color: "#BB9457" },
-  { name: "fairy", color: "#FF487C" },
-  { name: "fighting", color: "#980B01" },
-  { name: "psychic", color: "#FF53C6" },
-  { name: "rock", color: "#A38560" },
-  { name: "steel", color: "#889696" },
-  { name: "ice", color: "#89FFFF" },
-  { name: "ghost", color: "#603F6C" },
-  { name: "dragon", color: "#7F557D" },
-  { name: "dark", color: "#323031" },
-];
+const cardColors: pokeType = {
+  fire: '#CA3C25',
+  water: '#3F88C5',
+  grass: '#329F5B',
+  normal: '#F4F1BB',
+  flying: '#DFDFDF',
+  poison: '#5941A9',
+  electric: '#FEC601',
+  ground: '#BB9457',
+  fairy: '#FF487C',
+  fighting: '#980B01',
+  psychic: '#FF53C6',
+  rock: '#A38560',
+  steel: '#889696',
+  ice: '#89FFFF',
+  ghost: '#603F6C',
+  dragon: '#7F557D',
+  dark: '#323031',
+  bug: '#99bc40',
+};
+
+function getCardColor(type: string): string {
+  return cardColors[type];
+}
+
+function uppercaseFirstLetter(type: string): string {
+  return type[0].toLocaleUpperCase() + type.slice(1);
+}
+
 export const Card = ({ name, url, number, types }: CardProps) => {
+  const color = getCardColor(types[0]);
+
   return (
-    <div className="box-border bg-blue-300 flex flex-col items-center w-2/12 h-40 rounded shadow-md">
+    <main
+      style={{ backgroundColor: color }}
+      className="box-border m-2 flex flex-col items-center w-2/12 rounded shadow-md"
+    >
       <PokeName name={name}></PokeName>
-      <PokeIcon url={url} name={name}></PokeIcon>
+      <PokeIcon
+        url={url}
+        name={name}
+      ></PokeIcon>
       <PokeNumber number={number}></PokeNumber>
       {types.map((type: string) => (
-        <p>{type}</p>
+        <p>{uppercaseFirstLetter(type)}</p>
       ))}
-    </div>
+    </main>
   );
 };
