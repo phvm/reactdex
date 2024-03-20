@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { PokemonService } from "../services/pokemonService.ts";
-import { Pokemon } from "../interfaces/interfaces.ts";
-import { Card } from "../Components/Card.tsx";
+import { useEffect, useState } from 'react';
+import { PokemonService } from '../services/pokemonService.ts';
+import { Pokemon } from '../interfaces/interfaces.ts';
+import { Card } from '../Components/Card.tsx';
 
 export const Home = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
