@@ -5,6 +5,10 @@ import { Card } from '../Components/Card.tsx';
 import SearchBar from '../Components/SearchBar';
 
 export const Home = () => {
+  const itemsPerPage: number = 30;
+  const [pageAmount, setPageAmount] = useState<number>(0)
+  const [pageIndex, setPageIndex] = useState<number>(0);
+  const [paginatedPokemon, setPaginatedPokemon] = useState<Pokemon[]>([])
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([]);
   const [searchName, setSearchName] = useState<string>('');
@@ -26,6 +30,20 @@ export const Home = () => {
       />
     ));
   }
+
+  useEffect(()=>{
+    function calculatePages(): number {
+      return Math.ceil(filteredPokemons.length/itemsPerPage)
+    }
+    const amount:number = calculatePages()
+    setPageAmount(amount)
+  }, [filteredPokemons])
+
+  useEffect(()=>{
+    function paginatePokemons(): void {
+      
+    }
+  }, [pageIndex])
 
   useEffect(() => {
     function filterPokemons() {
